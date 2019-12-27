@@ -1,0 +1,52 @@
+#container {
+
+}
+
+#root {
+    max-width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+
+.header {
+    text-align: center;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    font-family: 'Dosis';
+    padding-bottom: 50px;
+}
+
+.card {
+    width: 200px;
+    height: 320px;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 5px
+    
+}
+
+.pokemon_name {
+    text-transform: capitalize;
+    padding-left: 20px;
+    font-family: 'Dosis';
+    font-size: 18px;
+    color: #000000
+}
+
+.pokemon_photo {
+    width: 80%;
+    max-width: 100%;
+    margin: 10%;
+}
+
+.type_container {
+    text-align: center;
+    font-family: "Dosis";
+    text-transform: capitalize;
+    height: 50px;
+    width: 90%;
+}
