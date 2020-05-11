@@ -5,9 +5,7 @@ function imageCreation(pokemonName) {
   image.onerror = function() {
     image.setAttribute("src", "img/unidentified.png");
   };
-
   image.setAttribute("src", `${imageURL}`);
-
   image.setAttribute("class", "pokemon_photo");
 
   return image;
