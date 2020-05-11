@@ -26,7 +26,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30", {
           const capitalisedName =
             singlePokemonData.name.charAt(0).toUpperCase() +
             singlePokemonData.name.substring(1);
-          const pokemonNumber = singlePokemonData.order;
+          const pokemonNumber = singlePokemonData.id;
           const spriteUrl = singlePokemonData.sprites;
 
           // Creates a container for the Pokemon Types
