@@ -3,7 +3,7 @@ const container = document.createElement("div");
 container.setAttribute("class", "container");
 application.appendChild(container);
 
-fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150", {
+fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30", {
   method: "GET"
 })
   .then(function(response) {
@@ -11,24 +11,9 @@ fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150", {
   })
   .then(function(data) {
     data.results.forEach(function(pokemon) {
-      // Sets values for a pokemon's properties
-      const pokemonData = dataCreation(pokemon);
-      const pokemonName = pokemonData.pokemonName;
-      const pokemonNumber = pokemonData.pokemonNumber;
-      const capitalisedName = pokemonData.capitalisedName;
-      // Creates an image for a pokemon
-      const image = imageCreation(pokemonName);
+      //Gets Pokemon Names to later fetch each endpoint individually
+      const pokemonName = pokemon.name;
 
-      //Creates a card slot per pokemon.
-      const card = document.createElement("div");
-      card.setAttribute("class", "card");
-
-      //Adds an H1 containing the number and the capitalised name of each pokemon
-      const h1 = document.createElement("h1");
-      h1.setAttribute("class", "pokemon_name");
-      h1.textContent = `${capitalisedName}`;
-
-      //Gets the pokemon types and prints them in the card
       fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, {
         method: "GET"
       })
@@ -36,19 +21,41 @@ fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150", {
           return singlePokemonInformation.json();
         })
         .then(function(singlePokemonData) {
-          // Creates a Container for the Types of each Pokemon
+          //Gets a few pokemon attributes
+          const image = imageCreation(singlePokemonData);
+          const capitalisedName =
+            singlePokemonData.name.charAt(0).toUpperCase() +
+            singlePokemonData.name.substring(1);
+          const pokemonNumber = singlePokemonData.order;
+          const spriteUrl = singlePokemonData.sprites;
+
+          // Creates a container for the Pokemon Types
           const typeContainer = document.createElement("div");
           typeContainer.setAttribute("class", "type_container");
 
           //Get the types and displays them with a comma or without depending if there's any additional types
           singlePokemonData.types.forEach(function(pokemonTypes, key) {
             const pokemonTypeNames = pokemonTypes.type.name;
+            console.log(`this is KEY ---> ${key}`);
+            console.log(
+              `this is TYPES.LENGTH ---> ${singlePokemonData.types.length}`
+            );
+
             if (key === singlePokemonData.types.length - 1) {
               typeContainer.innerHTML += `${pokemonTypeNames}`;
             } else {
               typeContainer.innerHTML += `${pokemonTypeNames}, `;
             }
           });
+
+          //Creates a card slot per pokemon.
+          const card = document.createElement("div");
+          card.setAttribute("class", "card");
+
+          //Adds an H1 containing the number and the capitalised name of each pokemon
+          const h1 = document.createElement("h1");
+          h1.setAttribute("class", "pokemon_name");
+          h1.textContent = `${capitalisedName}`;
 
           //Create a Card Header div
           const cardHeader = document.createElement("div");
