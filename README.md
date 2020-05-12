@@ -6,8 +6,6 @@ It's not much, but it works, and it was a great thing to practice! :D
 
 ## To Do:
 
-- Header
 - Footer
 - Fix numerical ordered cards issue
-- Add pagination
 - Add sorting
