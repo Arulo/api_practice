@@ -26,7 +26,6 @@ fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251", {
             individualPokemonData.name.charAt(0).toUpperCase() +
             individualPokemonData.name.substring(1);
           const pokemonNumber = individualPokemonData.id;
-          const spriteUrl = individualPokemonData.sprites;
 
           //Creates a card slot per pokemon.
           const card = document.createElement("div");
