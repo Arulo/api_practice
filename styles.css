@@ -38,11 +38,9 @@
       #5d4a1f 100%
     );
 }
-
 .card_header {
   height: 30px;
 }
-
 .pokemon_number {
   float: right;
   font-family: "Dosis";
@@ -55,7 +53,6 @@
   border-radius: 5px;
   padding: 2%;
 }
-
 .pokemon_name {
   text-align: center;
   text-transform: capitalize;
@@ -67,8 +64,7 @@
   margin-bottom: 5px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-
-.pokemon_photo {
+.pokemon_image {
   background-color: white;
   border: 2px solid black;
   border-radius: 5px;
@@ -79,16 +75,14 @@
   margin: 1.75%;
   margin-top: 3%;
 }
-
 .type_container {
   text-align: center;
   font-family: "Dosis";
   font-weight: 800;
   text-transform: capitalize;
   height: 50px;
-  width: 90%;
+  width: 100%;
 }
-
 .pokeball_image {
   float: left;
   max-width: 30px;
