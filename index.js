@@ -3,7 +3,7 @@ const container = document.createElement("div");
 container.setAttribute("class", "container");
 application.appendChild(container);
 
-fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30", {
+fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251", {
   method: "GET"
 })
   .then(function(response) {
@@ -13,49 +13,29 @@ fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30", {
     data.results.forEach(function(pokemon) {
       //Gets Pokemon Names to later fetch each endpoint individually
       const pokemonName = pokemon.name;
-
       fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, {
         method: "GET"
       })
-        .then(function(singlePokemonInformation) {
-          return singlePokemonInformation.json();
+        .then(function(individualPokemonEndpoint) {
+          return individualPokemonEndpoint.json();
         })
-        .then(function(singlePokemonData) {
+        .then(function(individualPokemonData) {
           //Gets a few pokemon attributes
-          const image = imageCreation(singlePokemonData);
+          const image = imageCreation(individualPokemonData);
           const capitalisedName =
-            singlePokemonData.name.charAt(0).toUpperCase() +
-            singlePokemonData.name.substring(1);
-          const pokemonNumber = singlePokemonData.id;
-          const spriteUrl = singlePokemonData.sprites;
-
-          // Creates a container for the Pokemon Types
-          const typeContainer = document.createElement("div");
-          typeContainer.setAttribute("class", "type_container");
-
-          //Get the types and displays them with a comma or without depending if there's any additional types
-          singlePokemonData.types.forEach(function(pokemonTypes, key) {
-            const pokemonTypeNames = pokemonTypes.type.name;
-            console.log(`this is KEY ---> ${key}`);
-            console.log(
-              `this is TYPES.LENGTH ---> ${singlePokemonData.types.length}`
-            );
-
-            if (key === singlePokemonData.types.length - 1) {
-              typeContainer.innerHTML += `${pokemonTypeNames}`;
-            } else {
-              typeContainer.innerHTML += `${pokemonTypeNames}, `;
-            }
-          });
+            individualPokemonData.name.charAt(0).toUpperCase() +
+            individualPokemonData.name.substring(1);
+          const pokemonNumber = individualPokemonData.id;
+          const spriteUrl = individualPokemonData.sprites;
 
           //Creates a card slot per pokemon.
           const card = document.createElement("div");
           card.setAttribute("class", "card");
 
-          //Adds an H1 containing the number and the capitalised name of each pokemon
-          const h1 = document.createElement("h1");
-          h1.setAttribute("class", "pokemon_name");
-          h1.textContent = `${capitalisedName}`;
+          //Adds an Heading containing the number and the capitalised name of each pokemon
+          const heading = document.createElement("h1");
+          heading.setAttribute("class", "pokemon_name");
+          heading.textContent = `${capitalisedName}`;
 
           //Create a Card Header div
           const cardHeader = document.createElement("div");
@@ -71,15 +51,30 @@ fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30", {
           pokemonNumberStamp.setAttribute("class", "pokemon_number");
           pokemonNumberStamp.textContent = `#${pokemonNumber}`;
 
+          // Creates a container for the Pokemon Types
+          const typeContainer = document.createElement("div");
+          typeContainer.setAttribute("class", "type_container");
+
+          //Get the types and displays them with a comma or without depending if there's any additional types
+          individualPokemonData.types.forEach(function(pokemonTypes, key) {
+            const pokemonTypeNames = pokemonTypes.type.name;
+
+            if (key === individualPokemonData.types.length - 1) {
+              typeContainer.textContent += `${pokemonTypeNames}`;
+            } else {
+              typeContainer.textContent += `${pokemonTypeNames}, `;
+            }
+          });
+
           //Build Card
           container.appendChild(card);
           //Build Card Header
           card.appendChild(cardHeader);
+          card.appendChild(image);
           cardHeader.appendChild(pokeBallImg);
           cardHeader.appendChild(pokemonNumberStamp);
           //Build Card Contents
-          card.appendChild(image);
-          card.appendChild(h1);
+          card.appendChild(heading);
           card.appendChild(typeContainer);
         });
     });
