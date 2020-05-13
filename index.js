@@ -62,6 +62,4 @@ getPokemonAndCreateSetOfCards(initialOffset, initialLimit)
   function fetchMorePokemon (){
     getPokemonAndCreateSetOfCards(pageStart, pageSize);
     pageStart = pageStart + pageSize;
-
-    console.log(`this is pageStart ${pageStart}, This is pageSize ${pageSize}`);
-    };
+  };
