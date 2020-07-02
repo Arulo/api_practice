@@ -1,4 +1,4 @@
-# Practicing interacting with an API using fetch
+# List of Pokemon
 
 A simple project to interact with the Pokemon API using JS (fetch)
 
@@ -24,7 +24,6 @@ I have been practising with Docker too so I added a Dockerfile to have the app r
 - Run `docker container run -d -p 80:80 pokelist-http-server:0.1` this should start the container and allow the user to access the http server on port 80
 - Visit `localhost:80/index.html` and you should see the app running on your browser :)
 
-It's not much, but it works, and it was a great thing to practice! :D
 
 ## To Do:
 
