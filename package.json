@@ -1,0 +1,24 @@
+{
+  "name": "api_practice",
+  "version": "1.0.0",
+  "description": "Used the PokeAPI to get some data, and then display it on screen using pure JS, CSS and HTML.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arulo/api_practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arulo/api_practice/issues"
+  },
+  "homepage": "https://github.com/Arulo/api_practice#readme",
+  "dependencies": {
+    "http-server": "^0.12.3",
+    "whatwg-fetch": "^3.0.0"
+  }
+}
